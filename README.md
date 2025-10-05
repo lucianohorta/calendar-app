@@ -33,7 +33,7 @@ All data is saved in **localStorage**, so your reminders stay even after refresh
 
 ```bash
 # 1. Clone this repository
-git clone [https://github.com/lucianohorta/calendar-app](https://github.com/lucianohorta/calendar-app)
+git clone https://github.com/lucianohorta/calendar-app
 cd calendar-app
 
 # 2. Install dependencies
