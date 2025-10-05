@@ -4,6 +4,8 @@ A simple and elegant (and responsible) calendar app built with **React + TypeScr
 You can create, edit, and delete daily reminders - each reminder includes a city, and automatically fetches the weather for that location using **Open-Meteo API**.  
 All data is saved in **localStorage**, so your reminders stay even after refreshing the page.
 
+LINK TO THE CALENDAR APP: https://calendar-app-mu-two.vercel.app/
+
 ![](./1.png) 
 ![](./2.png) 
 
