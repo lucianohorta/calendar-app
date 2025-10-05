@@ -8,6 +8,7 @@ import { getWeatherSummary } from "./weather";
 const DOW = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as const;
 const uid = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : Math.random().toString(36).slice(2));
 
+/** Build an array representing the month grid with leading/trailing nulls to fill weeks */
 function useMonthGrid(monthStartISO: string) {
   const first = startOfMonth(new Date(monthStartISO));
   const last = endOfMonth(first);
@@ -56,6 +57,7 @@ function DayCell({
   if (!date) return <div className="day disabled" />;
 
   const isToday = date.toDateString() === new Date().toDateString();
+  const weekday = format(date, "EEEE");
   const list = reminders ?? [];
   const visible = list.slice(0, 3);
   const overflow = list.length - visible.length;
@@ -64,6 +66,7 @@ function DayCell({
     <div className={`day ${isToday ? "today" : ""}`}>
       <div className="day__header">
         <span className="muted">{date.getDate()}</span>
+        <span className="wd">{weekday}</span>
         <button className="icon" onClick={() => onAdd(date)}>＋</button>
       </div>
 
@@ -168,7 +171,7 @@ function DayCell({
   );
 }
 
-/* Editor */
+/** Modal sheet to create/edit a reminder; validates, fetches weather */
 function Editor({
   initial,
   onClose,
@@ -246,7 +249,7 @@ function Editor({
   );
 }
 
-/* App */
+/** Main app: month navigation, grid rendering, and editor wiring */
 export default function App() {
   const { monthStartISO, remindersByDate, setMonthStart, addReminder, updateReminder, deleteReminder, clearDay } =
     useStore();

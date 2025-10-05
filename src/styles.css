@@ -7,9 +7,7 @@
   --danger: #ef4444;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -30,14 +28,10 @@ html, body {
   padding: 0 90px;
 }
 
-.wrap, .grid {
-  max-width: 100%;
-}
+.wrap, .grid { max-width: 100%; }
 
-/* Make sure grid items can shrink fully */
-.grid, .day, .reminder, .reminder__main, .reminder__text {
-  min-width: 0;
-}
+/* allow children to shrink on small screens */
+.grid, .day, .reminder, .reminder__main, .reminder__text { min-width: 0; }
 
 .topbar {
   display: flex;
@@ -45,10 +39,7 @@ html, body {
   gap: 12px;
 }
 
-.topbar h2 {
-  margin: 0 auto;
-  font-size: clamp(18px, 3.2vw, 28px);
-}
+.topbar h2 { margin: 0 auto; font-size: clamp(18px, 3.2vw, 28px); }
 
 .topbar button {
   background: var(--card);
@@ -76,6 +67,24 @@ html, body {
   font-size: 14px;
 }
 
+/* weekday label inside the cell (shown on tablet/mobile) */
+.wd {
+  display: none;
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #c7d2ff;
+  background: #1a2340;
+  border: 1px solid #24305a;
+  border-radius: 999px;
+  white-space: nowrap;
+  line-height: 1.2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .day {
   background: var(--card);
   border: 1px solid #263055;
@@ -86,15 +95,13 @@ html, body {
   flex-direction: column;
 }
 
-.day.disabled {
-  background: #0e1430;
-  opacity: 0.4;
-}
+.day.disabled { background: #0e1430; opacity: 0.4; display: none;}
 
 .day__header {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-wrap: nowrap; /* avoid breaking "+" to next line */
 }
 
 .day__header .icon {
@@ -107,11 +114,7 @@ html, body {
   cursor: pointer;
 }
 
-.day__footer {
-  margin-top: 6px;
-  display: flex;
-  justify-content: flex-end;
-}
+.day__footer { margin-top: 6px; display: flex; justify-content: flex-end; }
 
 .day__footer .icon {
   background: rgba(255, 255, 255, 0.07);
@@ -128,16 +131,9 @@ html, body {
   transition: all 0.2s ease;
 }
 
-.day__footer .icon:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-  transform: scale(1.05);
-}
+.day__footer .icon:hover { background: rgba(255,255,255,0.15); color: #fff; transform: scale(1.05); }
 
-.muted {
-  color: var(--muted);
-  font-weight: 600;
-}
+.muted { color: var(--muted); font-weight: 600; }
 
 .reminders {
   display: flex;
@@ -161,16 +157,13 @@ html, body {
 
 .reminder__main {
   display: flex;
+  position: relative;
   align-items: center;
   gap: 6px;
   line-height: 1.1;
 }
 
-.reminder__time {
-  font-variant-numeric: tabular-nums;
-  color: #b9c6ff;
-  font-size: 11px;
-}
+.reminder__time { font-variant-numeric: tabular-nums; color: #b9c6ff; font-size: 11px; }
 
 .reminder__text {
   font-size: 12px;
@@ -182,15 +175,12 @@ html, body {
   min-width: 0;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  display: inline-block;
-  flex: 0 0 auto;
-}
+.dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; flex: 0 0 auto; }
 
 .reminder .del {
+  position: absolute;
+  right: 0;
+  top: 0;
   margin-left: 6px;
   background: transparent;
   border: none;
@@ -202,15 +192,9 @@ html, body {
   padding-top: 0;
 }
 
-.reminder .del:hover {
-  color: #fecaca;
-}
+.reminder .del:hover { color: #fecaca; }
 
-.reminder__meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
+.reminder__meta { display: flex; flex-direction: column; gap: 2px; }
 
 .reminder__meta::before {
   content: "";
@@ -225,34 +209,18 @@ html, body {
 .meta-row {
   display: flex;
   align-items: center;
-  gap: 3px; 
+  gap: 3px;
   font-size: 10.5px;
   line-height: 1;
   color: #aeb7d9;
   opacity: 0.9;
 }
 
-.wx-sep {
-  opacity: 0.6;
-  font-weight: 600;
-  font-size: 9px;
-  margin: 0 -1px;
-}
+.wx-sep { opacity: 0.6; font-weight: 600; font-size: 9px; margin: 0 -1px; }
 
-
-.meta-row.city {
-  opacity: 0.85;
-}
-
-.wx-city {
-  opacity: 0.85;
-  font-size: 10.5px;
-}
-
-.wx-icon {
-  font-size: 11px;
-  line-height: 1;
-}
+.meta-row.city { opacity: 0.85; }
+.wx-city { opacity: 0.85; font-size: 10.5px; }
+.wx-icon { font-size: 11px; line-height: 1; }
 
 .more {
   margin-top: 4px;
@@ -266,7 +234,7 @@ html, body {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -283,16 +251,8 @@ html, body {
   padding: 16px;
 }
 
-.sheet__title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.spacer {
-  flex: 1;
-}
+.sheet__title { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.spacer { flex: 1; }
 
 .row {
   display: flex;
@@ -302,34 +262,14 @@ html, body {
   padding: 8px 0;
 }
 
-.row:first-child {
-  border-top: none;
-}
+.row:first-child { border-top: none; }
+.row .tm { margin: 0 8px; color: #b9c6ff; font-variant-numeric: tabular-nums; }
 
-.row .tm {
-  margin: 0 8px;
-  color: #b9c6ff;
-  font-variant-numeric: tabular-nums;
-}
+.row2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
-.row2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-}
+label { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
 
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 8px;
-}
-
-input,
-button,
-select {
-  font: inherit;
-}
+input, button, select { font: inherit; }
 
 input {
   background: #101832;
@@ -339,12 +279,7 @@ input {
   padding: 8px;
 }
 
-.actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  margin-top: 14px;
-}
+.actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
 
 button {
   background: #22305a;
@@ -355,90 +290,55 @@ button {
   cursor: pointer;
 }
 
-button.danger {
-  background: #3a0f14;
-  border-color: #6b1d25;
-  color: #fecaca;
-}
-
-.icon-sm {
-  padding: 0 6px;
-  font-size: 12px;
-  line-height: 18px;
-}
+button.danger { background: #3a0f14; border-color: #6b1d25; color: #fecaca; }
+.icon-sm { padding: 0 6px; font-size: 12px; line-height: 18px; }
 
 .today {
   background: #1e2a55;
   border: 1px solid #4f6df5;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
 }
 
-
-/* ≤ 900px: 5 columns */
+/* ≤ 900px (default tablet): keep 5 columns unless overridden below */
 @media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-  .dow {
-    font-size: 13px;
-    padding: 6px 4px;
-  }
-  .day {
-    min-height: clamp(110px, 18vw, 150px);
-  }
-  .wrap {
-    padding: 0 16px;
-  }
+  .grid { grid-template-columns: repeat(5, 1fr); }
+  .dow { font-size: 13px; padding: 6px 4px; }
+  .day { min-height: clamp(110px, 18vw, 150px); }
+  .wrap { padding: 0 16px; }
 }
 
-/* ≤ 720px: 3 columns */
-@media (max-width: 720px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-  }
-  .dow {
-    display: none;
-  }
+/* 721–900px: behave like mobile (no header, weekday inside cell, 3 columns) */
+@media (min-width: 721px) and (max-width: 900px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .dow { display: none; }
+  .wd { display: inline-block; }
+  .day { min-height: clamp(110px, 20vw, 160px); padding: 6px; }
   .day__header .icon,
-  .day__footer .icon {
-    width: 24px;
-    height: 24px;
-    font-size: 12px;
-    padding: 0 6px;
-  }
-  .reminder__text {
-    max-width: 65%;
-  }
+  .day__footer .icon { width: 24px; height: 24px; font-size: 12px; padding: 0 6px; }
+  .reminder__text { max-width: 65%; }
+}
+
+/* ≤ 720px: 3 columns, no header, weekday inside cell */
+@media (max-width: 720px) {
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .dow { display: none; }
+  .wd { display: inline-block; }
+  .day__header .icon,
+  .day__footer .icon { width: 24px; height: 24px; font-size: 12px; padding: 0 6px; }
+  .reminder__text { max-width: 65%; }
 }
 
 /* ≤ 520px: 2 columns */
 @media (max-width: 520px) {
-  .wrap {
-    padding: 0 10px;
-  }
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
-  }
-  .day {
-    min-height: clamp(100px, 26vw, 160px);
-    padding: 6px;
-  }
-  .reminder {
-    padding: 4px 6px;
-  }
+  .wrap { padding: 0 10px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+  .day { min-height: clamp(100px, 26vw, 160px); padding: 6px; }
+  .reminder { padding: 4px 6px; }
 }
 
 /* ≤ 380px: 1 column (list) */
 @media (max-width: 380px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-  .topbar {
-    gap: 8px;
-  }
-  .topbar button {
-    padding: 4px 8px;
-  }
+  .grid { grid-template-columns: 1fr; }
+  .topbar { gap: 8px; }
+  .topbar button { padding: 4px 8px; }
 }
